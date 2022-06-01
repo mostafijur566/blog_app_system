@@ -44,6 +44,17 @@ class RegistrationView(APIView):
 
 
 @permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def get_all_categories(request):
+    categories = Category.objects.all()
+    serializer = CategorySerializers(categories, many=True)
+    return Response({
+        "total_categories": Category.objects.count(),
+        "categories": serializer.data
+    })
+
+
+@permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def post_blog(request):
     serializer = PostSerializers(data=request.data)

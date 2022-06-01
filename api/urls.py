@@ -7,6 +7,8 @@ urlpatterns = [
     path('register/', RegistrationView.as_view()),
     path('login/', obtain_auth_token),
 
+    path('get-categories/', get_all_categories),
+
     path('post-blog/', post_blog),
     path('get-blog/', get_blog),
     path('get-single-blog/<str:pk>/', get_single_blog),
