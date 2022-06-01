@@ -5,13 +5,14 @@ from .models import *
 class RegistrationSerializers(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['email', 'username', 'password']
+        fields = ['name', 'email', 'username', 'password']
         extra_kwargs = {
             'password': {'write_only': True}
         }
 
     def save(self):
         account = Account(
+            name=self.validated_data['name'],
             email=self.validated_data['email'],
             username=self.validated_data['username']
         )

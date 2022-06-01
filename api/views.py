@@ -27,6 +27,7 @@ class RegistrationView(APIView):
         if serializer.is_valid():
             account = serializer.save()
             data['message'] = "Successfully registered"
+            data['name'] = account.name
             data['email'] = account.email
             data['username'] = account.email
             data['username'] = account.username
@@ -102,6 +103,19 @@ def delete_post(request, pk):
         return Response({
             "message": "You can't delete other's post!"
         })
+
+
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def get_post_by_category(request, pk):
+    posts = Post.objects.filter(category_id=pk)
+    serializer = PostSerializers(posts, many=True)
+    return Response(
+        {
+            "total_post": posts.count(),
+            "posts": serializer.data
+        }
+    )
 
 
 @permission_classes([IsAuthenticated])

@@ -11,6 +11,7 @@ urlpatterns = [
     path('get-blog/', get_blog),
     path('get-single-blog/<str:pk>/', get_single_blog),
     path('delete-post/<str:pk>/', delete_post),
+    path('get-post-by-category/<str:pk>/', get_post_by_category),
 
     path('post-comment/', post_comment),
     path('get-comment/<str:pk>/', get_comment),
