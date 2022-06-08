@@ -1,3 +1,4 @@
+from rest_framework.utils import json
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -41,6 +42,19 @@ class RegistrationView(APIView):
             }
 
         return Response(data)
+
+
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def get_user(request):
+    user = Account.objects.get(username=request.user)
+    serializer = RegistrationSerializers(user, many=False)
+
+    return Response({
+        "name": serializer.data['name'],
+        "email": serializer.data['email'],
+        "username": serializer.data['username']
+    })
 
 
 @permission_classes([IsAuthenticated])
@@ -114,6 +128,17 @@ def delete_post(request, pk):
         return Response({
             "message": "You can't delete other's post!"
         })
+
+
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def get_user_blog(request):
+    post = Post.objects.filter(user=request.user)
+    serializer = PostSerializers(post, many=True)
+    return Response({
+        "total_posts": post.count(),
+        "post": serializer.data
+    })
 
 
 @permission_classes([IsAuthenticated])

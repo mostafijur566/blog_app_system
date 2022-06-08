@@ -7,12 +7,15 @@ urlpatterns = [
     path('register/', RegistrationView.as_view()),
     path('login/', obtain_auth_token),
 
+    path('get-user/', get_user),
+
     path('get-categories/', get_all_categories),
 
     path('post-blog/', post_blog),
     path('get-blog/', get_blog),
     path('get-single-blog/<str:pk>/', get_single_blog),
     path('delete-post/<str:pk>/', delete_post),
+    path('get-user-blog/', get_user_blog),
     path('get-post-by-category/<str:pk>/', get_post_by_category),
 
     path('post-comment/', post_comment),
