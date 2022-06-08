@@ -37,6 +37,7 @@ class RegistrationView(APIView):
 
         else:
             data = {
+                "status": 400,
                 "message": "something went wrong",
                 "data": serializer.errors
             }
