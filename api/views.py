@@ -150,7 +150,7 @@ def get_post_by_category(request, pk):
     return Response(
         {
             "total_post": posts.count(),
-            "posts": serializer.data
+            "all_posts": serializer.data
         }
     )
 
