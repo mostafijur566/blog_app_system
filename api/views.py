@@ -81,7 +81,7 @@ def post_blog(request):
         }
     else:
         data = {
-            "message": serializer.errors,
+            "message": 400,
             "errors": serializer.errors
         }
 
