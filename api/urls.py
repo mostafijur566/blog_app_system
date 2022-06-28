@@ -8,6 +8,7 @@ urlpatterns = [
     path('login/', obtain_auth_token),
 
     path('get-user/', get_user),
+    path('get-other-user/<str:pk>/', get_other_user),
 
     path('get-categories/', get_all_categories),
 

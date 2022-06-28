@@ -60,6 +60,19 @@ def get_user(request):
 
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
+def get_other_user(request, pk):
+    user = Account.objects.get(username=pk)
+    serializer = RegistrationSerializers(user, many=False)
+
+    return Response({
+        "name": serializer.data['name'],
+        "email": serializer.data['email'],
+        "username": serializer.data['username']
+    })
+
+
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
 def get_all_categories(request):
     categories = Category.objects.all()
     serializer = CategorySerializers(categories, many=True)
