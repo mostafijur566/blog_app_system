@@ -1,4 +1,3 @@
-from rest_framework.utils import json
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -64,10 +63,14 @@ def get_other_user(request, pk):
     user = Account.objects.get(username=pk)
     serializer = RegistrationSerializers(user, many=False)
 
+    post = Post.objects.filter(user=pk)
+
+    print(post)
     return Response({
         "name": serializer.data['name'],
         "email": serializer.data['email'],
-        "username": serializer.data['username']
+        "username": serializer.data['username'],
+        "total_post": post.count()
     })
 
 
