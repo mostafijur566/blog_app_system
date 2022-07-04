@@ -95,7 +95,7 @@ class Comment(models.Model):
     post_id = models.ForeignKey(Post, on_delete=models.CASCADE, null=False, blank=False)
     user_id = models.ForeignKey(Account, on_delete=models.CASCADE, null=False, blank=False)
     comment = models.TextField()
-    comment_date = models.DateTimeField(default=datetime.now())
+    comment_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.comment[0:50]
