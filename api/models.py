@@ -99,3 +99,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment[0:50]
+
+    class Meta:
+        ordering = ['-comment_date']
