@@ -116,6 +116,20 @@ def get_blog(request):
         }
     )
 
+@permission_classes([IsAuthenticated])
+@api_view(['PUT'])
+def update_blog(request, pk):
+    post = Post.objects.get(id=pk)
+    print(post)
+    serializer = PostSerializers(post, data=request.data)
+    if serializer.is_valid():
+        message = 'Updated successfully!'
+        serializer.save()
+    else:
+        message = serializer.errors
+    return Response({
+        message
+    })
 
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
