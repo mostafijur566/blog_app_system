@@ -128,7 +128,7 @@ def update_blog(request, pk):
     else:
         message = serializer.errors
     return Response({
-        message
+        'message': message
     })
 
 @permission_classes([IsAuthenticated])
