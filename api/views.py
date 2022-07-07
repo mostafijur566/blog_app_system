@@ -137,7 +137,7 @@ def get_single_blog(request, pk):
     post = Post.objects.get(id=pk)
     serializer = PostSerializers(post, many=False)
     return Response(
-        
+
             serializer.data
 
     )
@@ -151,7 +151,7 @@ def delete_post(request, pk):
         post.delete()
         return Response(
             {
-                "message": "Post deleted!"
+                "message": "Blog deleted!"
             }
         )
 
