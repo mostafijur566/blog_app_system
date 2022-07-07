@@ -95,6 +95,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mostafi1_blog-app',
+#         'USER': 'mostafi1_mosta',
+#         'PASSWORD': 'Programmer56@',
+#         'HOST': 'mostafijur-rahman.com',
+#         'PORT': '3306',
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

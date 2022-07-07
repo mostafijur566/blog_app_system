@@ -137,9 +137,9 @@ def get_single_blog(request, pk):
     post = Post.objects.get(id=pk)
     serializer = PostSerializers(post, many=False)
     return Response(
-        {
-            "post": serializer.data
-        }
+        
+            serializer.data
+
     )
 
 
