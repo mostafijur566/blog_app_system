@@ -167,8 +167,8 @@ def get_user_blog(request):
     post = Post.objects.filter(user=request.user)
     serializer = PostSerializers(post, many=True)
     return Response({
-        "total_posts": post.count(),
-        "post": serializer.data
+        "total_post": post.count(),
+        "all_posts": serializer.data
     })
 
 
@@ -177,6 +177,19 @@ def get_user_blog(request):
 def get_post_by_category(request, pk):
     posts = Post.objects.filter(category_id=pk)
     serializer = PostSerializers(posts, many=True)
+    return Response(
+        {
+            "total_post": posts.count(),
+            "all_posts": serializer.data
+        }
+    )
+
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def get_filter_post(request, pk):
+    posts = Post.objects.filter(user=pk)
+    serializer = PostSerializers(posts, many=True)
+
     return Response(
         {
             "total_post": posts.count(),

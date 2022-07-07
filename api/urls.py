@@ -19,6 +19,7 @@ urlpatterns = [
     path('delete-post/<str:pk>/', delete_post),
     path('get-user-blog/', get_user_blog),
     path('get-post-by-category/<str:pk>/', get_post_by_category),
+    path('get-filter-post/<str:pk>/', get_filter_post),
 
     path('post-comment/', post_comment),
     path('get-comment/<str:pk>/', get_comment),
