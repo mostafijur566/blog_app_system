@@ -120,7 +120,6 @@ def get_blog(request):
 @api_view(['PUT'])
 def update_blog(request, pk):
     post = Post.objects.get(id=pk)
-    print(post)
     serializer = PostSerializers(post, data=request.data)
     if serializer.is_valid():
         message = 'Updated successfully!'
